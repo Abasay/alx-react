@@ -5,9 +5,7 @@ describe('Notifications Component', () => {
   it('renders without crashing', () => {
     render(<Notifications />)
   })
-})
 
-describe('Notification list items', () => {
   it('renders three list items', () => {
     render(<Notifications />)
     const listItems = screen.getAllByRole('listitem')
