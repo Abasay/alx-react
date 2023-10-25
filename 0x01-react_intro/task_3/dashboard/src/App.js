@@ -9,17 +9,17 @@ function App() {
         <img src={logo} alt='holberton logo' width={250} height={250} />
         <h1>School dashboard</h1>
       </div>
-      <div className='App-body'>
+      <div className='App-body' data-testid='app-body'>
         <p>Login to access the full dashboard</p>
-        <label for='email'>
+        <label htmlFor='email'>
           Email: <input type='email' name='email' />
         </label>{' '}
-        <label for='password'>
+        <label htmlFor='password'>
           Password: <input type='password' name='password' />
         </label>{' '}
         <button>OK</button>
       </div>
-      <div className='App-footer'>
+      <div className='App-footer' data-testid='app-footer'>
         <p>
           <em>
             Copyright {getFullYear()} - {getFooterCopy(true)}
