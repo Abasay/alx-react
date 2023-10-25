@@ -1,15 +1,15 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
-  entry: '../src/index.js',
+  entry: './src/index.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    contentBase: '../dist',
+    contentBase: './dist',
     hot: true,
   },
   module: {
@@ -33,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './dist/index.html',
     }),
     new MiniCssExtractPlugin({
       filename: 'styles.css',
