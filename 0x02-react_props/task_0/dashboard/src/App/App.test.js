@@ -1,26 +1,31 @@
+import React from 'react'
 import { render, screen } from '@testing-library/react'
+import { shallow } from 'enzyme'
 import App from './App'
+import { Notifications } from '../Notifications/Notifications'
 
 describe('App component', () => {
   it('renders without crashing', () => {
     render(<App />)
   })
 
-  it('should render a div with the class "App-header"', () => {
-    render(<App />)
-    const appHeader = screen.getByRole('heading')
-    expect(appHeader).toBeInTheDocument()
+  it('should render the Notifications component', () => {
+    const wrapper = shallow(<App />)
+    expect(wrapper.find('Notifications')).toHaveLength(1)
   })
 
-  it('should render a div with the class "App-body"', () => {
-    render(<App />)
-    const appBody = screen.getByTestId('app-body')
-    expect(appBody).toBeInTheDocument()
+  it('should render the Header Component', () => {
+    const wrapper = shallow(<App />)
+    expect(wrapper.find('Header')).toHaveLength(1)
   })
 
-  it('should render a div with the class "App-footer"', () => {
-    render(<App />)
-    const appFooter = screen.getByTestId('app-footer')
-    expect(appFooter).toBeInTheDocument()
+  it('should contain the Login Component', () => {
+    const wrapper = shallow(<App />)
+    expect(wrapper.find('Login')).toHaveLength(1)
+  })
+
+  it('should contain the Footer Component', () => {
+    const wrapper = shallow(<App />)
+    expect(wrapper.find('Footer')).toHaveLength(1)
   })
 })
