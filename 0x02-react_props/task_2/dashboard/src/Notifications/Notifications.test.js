@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { Notifications } from './Notifications'
+import { shallow } from 'enzyme'
 
 describe('Notifications Component', () => {
   it('renders without crashing', () => {
@@ -8,9 +9,16 @@ describe('Notifications Component', () => {
   })
 
   it('renders three list items', () => {
-    render(<Notifications />)
-    const listItems = screen.getAllByRole('listitem')
-    expect(listItems.length).toBe(3)
+    const wrapper = shallow(<Notifications />)
+    expect(wrapper.find('NotificationItem')).toHaveLength(3)
+  })
+
+  it('renders the correct html for the first element', () => {
+    const wrapper = shallow(<Notifications />)
+    const firstElem = wrapper.find('NotificationItem').first()
+    expect(firstElem.html()).toContain(
+      '<li data-notification-type="default">New course available</li>'
+    )
   })
 
   it('renders the text "Here is the list of notifications"', () => {
