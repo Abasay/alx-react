@@ -1,19 +1,19 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
     header: './modules/header/header.js',
     body: './modules/body/body.js',
-    footer: './modules/footer/footer.js'
+    footer: './modules/footer/footer.js',
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public'),
   },
   devServer: {
-    contentBase: "./public",
+    contentBase: './public',
     open: true,
     port: 8564,
   },
@@ -33,7 +33,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -53,24 +53,24 @@ module.exports = {
                 enabled: false,
               },
               pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4
+                quality: [0.65, 0.9],
+                speed: 4,
               },
               gifsicle: {
                 interlaced: false,
               },
               webp: {
-                quality: 75
-              }
+                quality: 75,
+              },
             },
           },
-        ]
+        ],
       },
       {
         test: /\.js$/,
-        enforce: "pre",
-        use: ["source-map-loader"],
+        enforce: 'pre',
+        use: ['source-map-loader'],
       },
-    ]
-  }
+    ],
+  },
 }

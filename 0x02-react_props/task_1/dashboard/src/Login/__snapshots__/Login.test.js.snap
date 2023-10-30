@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Login Component should shallow render the login component 1`] = `ShallowWrapper {}`;
