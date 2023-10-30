@@ -1,0 +1,21 @@
+section {
+  width: 25em;
+  position: absolute;
+  right: 10px;
+}
+section .menuItem {
+  float: right;
+}
+.Notifications {
+  position: relative;
+  border: 1px dotted #e12948;
+  padding: 10px;
+}
+
+.Notifications ul li[data-notification-type='default'] {
+  color: blue;
+}
+
+.Notifications ul li[data-notification-type='urgent'] {
+  color: red;
+}
