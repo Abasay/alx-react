@@ -8,7 +8,7 @@ import { CourseList } from '../CourseList/CourseList'
 import PropTypes from 'prop-types'
 import { getLatestNotification } from '../utils/utils'
 
-export default class App extends Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.listCourses = [
