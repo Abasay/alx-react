@@ -28,7 +28,7 @@ export const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
 CourseListRow.propTypes = {
   isHeader: PropTypes.bool,
   textFirstCell: PropTypes.string,
-  textSecondCell: PropTypes.string || PropTypes.string,
+  textSecondCell: PropTypes.string || PropTypes.number,
 }
 
 CourseListRow.defaultProps = {

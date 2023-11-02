@@ -1,8 +1,7 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import { shallow } from 'enzyme'
 import App from './App'
-import { Notifications } from '../Notifications/Notifications'
 
 describe('App component', () => {
   it('renders without crashing', () => {
@@ -39,5 +38,19 @@ describe('App component', () => {
     const wrapper = shallow(<App isLoggedIn={true} />)
     expect(wrapper.find('Login')).toHaveLength(0)
     expect(wrapper.find('CourseList')).toHaveLength(1)
+  })
+
+  it('should check if control and h are pressed together', () => {
+    const logOutMock = jest.fn()
+
+    render(<App logOut={logOutMock} />)
+
+    const ctrlHEvent = new KeyboardEvent('keydown', {
+      key: 'h',
+      ctrlKey: true,
+    })
+
+    document.dispatchEvent(ctrlHEvent)
+    expect(logOutMock).toHaveBeenCalled()
   })
 })

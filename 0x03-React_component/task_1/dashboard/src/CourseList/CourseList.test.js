@@ -30,6 +30,6 @@ describe('Course List Component when passing props', () => {
   it('should render correctly when the element props are passed', () => {
     const wrapper = shallow(<CourseList listCourses={listCourses} />)
 
-    expect(shallowWrapper.find('td')).toHaveLength(6)
+    expect(shallowWrapper.find('CourseListRow')).toHaveLength(5)
   })
 })

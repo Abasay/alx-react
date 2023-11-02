@@ -24,6 +24,20 @@ export default class App extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.handleKeyDown)
+  }
+
+  handleKeyDown = (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
+      alert('Logging you out')
+      this.props.logOut()
+    }
+  }
   render() {
     return (
       <React.Fragment>
@@ -46,17 +60,12 @@ export default class App extends React.Component {
   }
 }
 
-// function App({ isLoggedIn }) {
-
-//   return (
-
-//   )
-// }
-
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func,
 }
 
 App.defaultProps = {
   isLoggedIn: false,
+  logOut: function () {},
 }
