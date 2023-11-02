@@ -1,11 +1,10 @@
-:root {
-    --holberton-red: #e1484c;
-}
-
 .App-body {
-    padding: 36px 24px;
+  height: 50vh;
+  border-bottom: 4px solid #e12948;
+  border-top: 4px solid #e12948;
 }
 
-.App-body input {
-    margin: 0 16px 0 8px;
+.App-body p {
+  margin-left: 50px;
+  margin-top: 30px;
 }
