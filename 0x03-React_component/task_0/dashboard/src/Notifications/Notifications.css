@@ -1,21 +1,30 @@
-section {
-  width: 25em;
-  position: absolute;
-  right: 10px;
+.menuItem {
+    position: absolute;
+    top: 7px;
+    right: 7px;
 }
-section .menuItem {
-  float: right;
-}
+
 .Notifications {
-  position: relative;
-  border: 1px dotted #e12948;
-  padding: 10px;
+	border: 3px dotted var(--holberton-red);
+	padding: 6px 12px;
+    position: absolute;
+    top: 21px;
+    right: 7px;
+	margin-top: 12px;
 }
 
-.Notifications ul li[data-notification-type='default'] {
-  color: blue;
+li[data-priority="default"] {
+	color: blue;
 }
 
-.Notifications ul li[data-notification-type='urgent'] {
-  color: red;
+li[data-priority="urgent"] {
+	color: var(--holberton-red);
+}
+
+li[data-notification-type="default"] {
+	color: blue;
+}
+
+li[data-notification-type="urgent"] {
+	color: var(--holberton-red);
 }

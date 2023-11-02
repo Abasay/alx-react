@@ -1,32 +1,21 @@
-import { getFooterCopy, getFullYear, getLatestNotification } from './utils'
+import { getFooterCopy, getFullYear, getLatestNotification } from './utils';
 
-//Test for getFullYear
-describe('get full year function', () => {
-  test('should return the current year', () => {
-    const currentYear = new Date().getFullYear()
-    expect(getFullYear()).toBe(currentYear)
-  })
-})
+describe("Utils functions", () => {
+  
+  test("getFullYear returns the correct year", () => {
+    expect(getFullYear()).toEqual(2022);
+  });
 
-//Test for getFooterCopy
-describe('get footer copy', () => {
-  //When arg is true
-  test('should return correct string for the footer with true arg', () => {
-    const expectedString = 'Holberton School'
-    expect(getFooterCopy(true)).toBe(expectedString)
-  })
-  //when arg is false
-  test('should return correct string for the footer with false arg', () => {
-    const expectedString = 'Holberton School main dashboard'
-    expect(getFooterCopy(false)).toBe(expectedString)
-  })
-})
+  test("getFooterCopy returns the correct string when the argument is true", () => {
+    expect(getFooterCopy(true)).toEqual("Holberton School");
+  });
 
-//Test for getLatestNotifications
-describe('get latest notifications', () => {
-  test('should get latest notifications', () => {
-    const expectedString =
-      '<strong>Urgent requirement</strong> - complete by EOD'
-    expect(getLatestNotification()).toBe(expectedString)
-  })
-})
+  test("getFooterCopy returns the correct string when the argument is false", () => {
+    expect(getFooterCopy(false)).toEqual("Holberton School main dashboard");
+  });
+
+  test("getLatestNotification returns the expected string", () => {
+    expect(getLatestNotification()).toEqual("<strong>Urgent requirement</strong> - complete by EOD");
+  });
+
+});

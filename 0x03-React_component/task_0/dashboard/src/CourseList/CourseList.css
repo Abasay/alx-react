@@ -1,18 +1,22 @@
+th {
+    border-bottom: 1px solid gray;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+th:first-child {
+    text-align: center;
+}
+
 table {
-  width: 80%;
-  margin: 20px auto;
-  border: 1.5px solid grey;
-  /* padding: 10px;
-  padding-left: 0;
-  padding-right: 0; */
+    width: 90%;
+    border: 1px solid gray;
+    margin: auto;
+    margin-top: 40px;
+    padding: 0;
 }
 
-tr th {
-  border-bottom: 2px solid rgb(206, 205, 205);
-  padding: 5px;
-}
-
-.col-1,
-.col-2 {
-  text-align: left;
+td {
+    padding-left: 3px;
 }
