@@ -1,22 +1,21 @@
 import React from 'react'
 import PropTypes, { string } from 'prop-types'
 
-export const NotificationItem = ({
-  notificationId,
-  type,
-  html,
-  value,
-  markAsRead,
-}) => {
-  return (
-    <li
-      data-notification-type={type}
-      dangerouslySetInnerHTML={html}
-      onClick={() => markAsRead(notificationId)}
-    >
-      {value}
-    </li>
-  )
+export class NotificationItem extends React.PureComponent {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <li
+        data-notification-type={this.props.type}
+        dangerouslySetInnerHTML={this.props.html}
+        onClick={() => markAsRead(this.props.notificationId)}
+      >
+        {this.props.value}
+      </li>
+    )
+  }
 }
 
 NotificationItem.propTypes = {

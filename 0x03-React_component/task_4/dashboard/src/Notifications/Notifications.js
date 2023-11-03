@@ -10,6 +10,10 @@ export class Notifications extends Component {
     super(props)
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.listNotifications.length > nextProps.length) return true
+    return false
+  }
   handleBtn = () => {
     console.log('Close button has been clicked')
   }

@@ -7,8 +7,8 @@ import { Footer } from '../Footer/Footer'
 import { CourseList } from '../CourseList/CourseList'
 import PropTypes from 'prop-types'
 import { getLatestNotification } from '../utils/utils'
-import { BodySection } from '../BodySection/BodySection'
 import { BodySectionWithMarginBottom } from '../BodySection/BodySectionWithMarginBottom'
+import { BodySection } from '../BodySection/BodySection'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -51,10 +51,17 @@ export default class App extends React.Component {
         </div>
         <div className='App-body'>
           {this.props.isLoggedIn ? (
-            <CourseList listCourses={this.listCourses} />
+            <BodySectionWithMarginBottom title='Course list'>
+              <CourseList listCourses={this.listCourses} />
+            </BodySectionWithMarginBottom>
           ) : (
-            <Login />
+            <BodySectionWithMarginBottom title='Log in to continue'>
+              <Login />
+            </BodySectionWithMarginBottom>
           )}
+          <BodySection title='News from the School'>
+            <p>Hello, this is the body section containment component</p>
+          </BodySection>
         </div>
         <div className='App-footer'>
           <Footer />
