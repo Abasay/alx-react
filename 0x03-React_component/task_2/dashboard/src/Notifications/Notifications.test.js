@@ -92,4 +92,24 @@ describe('Notication component when displayDrawer is true', () => {
     const text = screen.getByText('No new notification for now')
     expect(text).toBeInTheDocument()
   })
+
+  it('Mock up the console function', () => {
+    const consoleLogSpy = jest
+      .spyOn(console, 'log')
+      .mockImplementation(() => {})
+
+    const { container } = render(
+      <Notifications
+        displayDrawer={true}
+        listNotifications={listNotifications}
+      />
+    )
+
+    const notificationComponent = container.firstChild
+    notificationComponent.markAsRead(1)
+
+    expect(consoleLogSpy).toHaveBeenCalledWith('Notification 1 marked as read')
+
+    consoleLogSpy.mockRestore()
+  })
 })

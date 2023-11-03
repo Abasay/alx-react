@@ -9,20 +9,21 @@ import PropTypes from 'prop-types'
 import { getLatestNotification } from '../utils/utils'
 
 export default class App extends React.Component {
-  static listCourses = [
-    { id: 1, name: 'ES6', credit: 60 },
-    { id: 2, name: 'Webpack', credit: 20 },
-    { id: 3, name: 'React', credit: 40 },
-  ]
+  constructor(props) {
+    super(props)
+  }
 
-  static listNotifications = [
+  listNotifications = [
     { id: 1, type: 'default', value: 'New course available' },
     { id: 2, type: 'urgent', value: 'New resume available' },
     { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
   ]
-  constructor(props) {
-    super(props)
-  }
+
+  listCourses = [
+    { id: 1, name: 'ES6', credit: 60 },
+    { id: 2, name: 'Webpack', credit: 20 },
+    { id: 3, name: 'React', credit: 40 },
+  ]
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown)
@@ -34,10 +35,11 @@ export default class App extends React.Component {
 
   handleKeyDown = (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
-      alert('Logging you out')
+      window.alert('Logging you out')
       this.props.logOut()
     }
   }
+
   render() {
     return (
       <React.Fragment>
