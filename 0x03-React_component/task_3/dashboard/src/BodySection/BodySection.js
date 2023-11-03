@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export const BodySection = ({ title, children }) => {
   return (
@@ -7,4 +8,9 @@ export const BodySection = ({ title, children }) => {
       {children}
     </div>
   )
+}
+
+BodySection.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.any,
 }

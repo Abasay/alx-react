@@ -7,7 +7,6 @@ import { Footer } from '../Footer/Footer'
 import { CourseList } from '../CourseList/CourseList'
 import PropTypes from 'prop-types'
 import { getLatestNotification } from '../utils/utils'
-import { BodySection } from '../BodySection/BodySection'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -58,9 +57,6 @@ export default class App extends React.Component {
         <div className='App-footer'>
           <Footer />
         </div>
-        <BodySection title='test'>
-          <p>test</p>
-        </BodySection>
       </React.Fragment>
     )
   }
