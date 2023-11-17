@@ -4,20 +4,17 @@ import closeIcon from '../assets/close-icon.png';
 import { NotificationItem } from './NotificationItem';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
+import { AppContext } from '../App/AppContext';
 
-export class Notifications extends Component {
+export class Notifications extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
+  static contextType = AppContext;
+
   shouldComponentUpdate(nextProps, nextState) {
-    if (
-      this.props.listNotifications.length <
-        nextProps.listNotifications.length ||
-      this.props.displayDrawer != nextProps.displayDrawer
-    )
-      return true;
-    return false;
+    return true;
   }
   handleBtn = () => {
     console.log('Close button has been clicked');
@@ -27,6 +24,7 @@ export class Notifications extends Component {
     console.log(`Notification ${id} has been marked as read`);
   };
   render() {
+    let { listNotifications, markNotificationAsRead } = this.context;
     return (
       <section className={css(styles.notificationSection)}>
         <div className='menuItem' onClick={this.props.handleDisplayDrawer}>
@@ -49,10 +47,10 @@ export class Notifications extends Component {
               <img src={closeIcon} alt='close icon' width={10} height={12} />
             </button>
             <p>Here is the list of notifications</p>
-            {this.props.listNotifications.length == 0 ? (
+            {listNotifications?.length == 0 ? (
               <p>No new notification for now</p>
             ) : (
-              this.props.listNotifications.map((notification) => {
+              listNotifications?.map((notification) => {
                 return (
                   <ul key={notification.id}>
                     <NotificationItem
@@ -60,7 +58,7 @@ export class Notifications extends Component {
                       type={notification.type}
                       value={notification.value && notification.value}
                       html={notification.html && notification.html}
-                      markAsRead={this.markAsRead}
+                      markNotificationAsRead={markNotificationAsRead}
                     />
                   </ul>
                 );

@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../assets/holberton_logo.jpg';
 import { StyleSheet, css } from 'aphrodite';
 import { AppContext } from '../App/AppContext';
+
 export class Header extends React.Component {
   static contextType = AppContext;
 

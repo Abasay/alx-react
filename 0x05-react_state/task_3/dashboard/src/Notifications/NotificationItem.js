@@ -1,20 +1,23 @@
-import React from 'react'
-import PropTypes, { string } from 'prop-types'
+import React from 'react';
+import PropTypes, { string } from 'prop-types';
+import { AppContext, markNotificationAsRead } from '../App/AppContext';
 
 export class NotificationItem extends React.PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
   }
+  static contextType = AppContext;
   render() {
+    let { markNotificationAsRead } = this.context;
     return (
       <li
         data-notification-type={this.props.type}
         dangerouslySetInnerHTML={this.props.html}
-        onClick={() => markAsRead(this.props.notificationId)}
+        onClick={() => markNotificationAsRead(this.props.notificationId)}
       >
         {this.props.value}
       </li>
-    )
+    );
   }
 }
 
@@ -23,9 +26,9 @@ NotificationItem.propTypes = {
   html: PropTypes.shape({ __html: string }),
   type: PropTypes.string,
   value: PropTypes.string,
-  markAsRead: PropTypes.func,
-}
+  markNotificationAsRead: PropTypes.func,
+};
 
 NotificationItem.defaultProps = {
   type: 'default',
-}
+};

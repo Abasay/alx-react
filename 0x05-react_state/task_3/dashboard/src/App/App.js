@@ -9,7 +9,7 @@ import { getLatestNotification } from '../utils/utils';
 import { BodySectionWithMarginBottom } from '../BodySection/BodySectionWithMarginBottom';
 import { BodySection } from '../BodySection/BodySection';
 import { StyleSheet, css } from 'aphrodite';
-import { user, AppContext } from './AppContext';
+import { user, AppContext, listNotifications } from './AppContext';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,22 +17,19 @@ export default class App extends React.Component {
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
 
     this.state = {
       displayDrawer: false,
       user: user,
       logOut: this.logOut,
+      listNotifications: listNotifications,
+      markNotificationAsRead: this.markNotificationAsRead,
     };
     this.listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
       { id: 2, name: 'Webpack', credit: 20 },
       { id: 3, name: 'React', credit: 40 },
-    ];
-
-    this.listNotifications = [
-      { id: 1, type: 'default', value: 'New course available' },
-      { id: 2, type: 'urgent', value: 'New resume available' },
-      { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
     ];
   }
 
@@ -43,6 +40,15 @@ export default class App extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('keypress', this.handleKeyDown);
   }
+  markNotificationAsRead = (id) => {
+    const newNotification = this.state.listNotifications.filter(
+      (notification) => {
+        return notification.id !== id;
+      }
+    );
+
+    this.setState({ listNotifications: newNotification });
+  };
 
   logIn = (email, password) => {
     this.setState({
@@ -80,13 +86,18 @@ export default class App extends React.Component {
   render() {
     return (
       <AppContext.Provider
-        value={{ user: this.state.user, logOut: this.state.logOut }}
+        value={{
+          user: this.state.user,
+          logOut: this.state.logOut,
+          listNotifications: this.state.listNotifications,
+          markNotificationAsRead: this.state.markNotificationAsRead,
+        }}
       >
         <Notifications
-          listNotifications={this.listNotifications}
           displayDrawer={this.state.displayDrawer}
           handleDisplayDrawer={this.handleDisplayDrawer}
           handleHideDrawer={this.handleHideDrawer}
+          markNotificationAsRead={this.markNotificationAsRead}
         />
         <div className='App'>
           <Header />
