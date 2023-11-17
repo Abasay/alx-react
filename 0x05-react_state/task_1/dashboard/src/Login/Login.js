@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import PropTypes from 'prop-types';
 
-function Login(props) {
+export function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [enableSubmit, setEnableSubmit] = useState(false);
@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
     margin: '10px',
   },
 });
-
-export default Login;
 
 // import React, { useEffect, useState } from 'react';
 // import { StyleSheet, css } from 'aphrodite';

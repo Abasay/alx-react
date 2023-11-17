@@ -9,25 +9,19 @@ import { getLatestNotification } from '../utils/utils';
 import { BodySectionWithMarginBottom } from '../BodySection/BodySectionWithMarginBottom';
 import { BodySection } from '../BodySection/BodySection';
 import { StyleSheet, css } from 'aphrodite';
+import { user, AppContext } from './AppContext';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
-    this.logIn = this.logIn.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
 
     this.state = {
       displayDrawer: false,
-      user: {
-        email: '',
-        password: '',
-        isLoggedIn: false,
-      },
-      logOut: () => {
-        console.log('logging out');
-      },
+      user: user,
+      logOut: this.logOut,
     };
     this.listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
@@ -52,9 +46,11 @@ export default class App extends React.Component {
 
   logIn = (email, password) => {
     this.setState({
-      email: email,
-      password: password,
-      isLoggedIn: true,
+      user: {
+        email: email,
+        password: password,
+        isLoggedIn: true,
+      },
     });
   };
   logOut = () => {
@@ -62,6 +58,7 @@ export default class App extends React.Component {
       user: {
         email: '',
         password: '',
+        isLoggedIn: false,
       },
     });
   };
@@ -82,7 +79,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <AppContext.Provider
+        value={{ user: this.state.user, logOut: this.state.logOut }}
+      >
         <Notifications
           listNotifications={this.listNotifications}
           displayDrawer={this.state.displayDrawer}
@@ -99,7 +98,7 @@ export default class App extends React.Component {
             </BodySectionWithMarginBottom>
           ) : (
             <BodySectionWithMarginBottom title='Log in to continue'>
-              <Login login={this.logIn} />
+              <Login logIn={this.logIn} />
             </BodySectionWithMarginBottom>
           )}
           <BodySection title='News from the School'>
@@ -109,7 +108,7 @@ export default class App extends React.Component {
         <div className={css(styles.footer)}>
           <Footer />
         </div>
-      </React.Fragment>
+      </AppContext.Provider>
     );
   }
 }
