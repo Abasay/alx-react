@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import { AppContext } from '../App/AppContext';
 
-export class Notifications extends React.PureComponent {
+export class Notifications extends React.Component {
   constructor(props) {
     super(props);
   }

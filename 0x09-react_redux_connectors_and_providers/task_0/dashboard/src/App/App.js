@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return state.uiReducer.isLoggedIn;
 };
 

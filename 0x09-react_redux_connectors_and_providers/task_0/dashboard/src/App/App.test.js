@@ -3,6 +3,8 @@ import { shallow, mount } from 'enzyme';
 import { jest } from '@jest/globals';
 import App from './App';
 import { StyleSheetTestUtils } from 'aphrodite';
+import { fromJS } from 'immutable';
+import { mapStateToProps } from './App';
 
 describe('Test App.js', () => {
   let wrapper;
@@ -74,6 +76,18 @@ describe('Testing <App isLoggedIn={true} />', () => {
 
   it('the CourseList component is included', () => {
     expect(wrapper.find('CourseList').exists());
+  });
+
+  it('test for mapStateProps function which will return an object with isLoggedIn true', () => {
+    let state = fromJS({
+      isUserLoggedIn: true,
+    });
+
+    const result = mapStateToProps(state);
+
+    const expected = { isLoggedIn: true };
+
+    expect(result).toBe(expected);
   });
 });
 
